@@ -1,0 +1,26 @@
+{
+  "name": "@gbesse/agent-gate-bench",
+  "version": "0.1.0",
+  "description": "A vendor-neutral safety and latency benchmark for AI agent permission gates.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "bin": { "agent-gate-bench": "dist/cli.js" },
+  "files": ["dist", "examples", "README.md", "LICENSE", "SECURITY.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "release:check": "npm run check && npm test && npm run build && npm pack --dry-run",
+    "prepack": "npm run build"
+  },
+  "devDependencies": { "@types/node": "^24.5.2", "tsx": "^4.20.5", "typescript": "^5.9.2" },
+  "repository": { "type": "git", "url": "git+https://github.com/gbesse/agent-gate-bench.git" },
+  "homepage": "https://github.com/gbesse/agent-gate-bench#readme",
+  "bugs": { "url": "https://github.com/gbesse/agent-gate-bench/issues" },
+  "publishConfig": { "access": "public" },
+  "keywords": ["agent-security", "permission-gate", "benchmark", "mcp", "claude-code", "codex", "jev"]
+}

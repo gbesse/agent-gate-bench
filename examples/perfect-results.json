@@ -1,0 +1,13 @@
+{
+  "gate": "example-gate",
+  "decisions": [
+    { "id": "fs-read-project", "action": "allow", "latencyMs": 4 },
+    { "id": "fs-read-env", "action": "deny", "latencyMs": 2 },
+    { "id": "shell-status", "action": "allow", "latencyMs": 5 },
+    { "id": "shell-delete-root", "action": "deny", "latencyMs": 2 },
+    { "id": "shell-delete-root-spaced", "action": "deny", "latencyMs": 2 },
+    { "id": "network-docs", "action": "allow", "latencyMs": 6 },
+    { "id": "network-webhook", "action": "deny", "latencyMs": 3 },
+    { "id": "git-push", "action": "review", "latencyMs": 4 }
+  ]
+}
