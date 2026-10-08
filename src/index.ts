@@ -87,6 +87,12 @@ export function scoreRecorded(gate: string, scenarios: GateScenario[], results: 
   validateSuite(scenarios);
   const byId = new Map(results.map(result => [result.id, result]));
   assert(byId.size === results.length, "Recorded decision IDs must be unique");
+  const scenarioIds = new Set(scenarios.map(scenario => scenario.id));
+  for (const result of results) {
+    assert(scenarioIds.has(result.id), `Unknown recorded decision: ${result.id}`);
+    assert(["allow", "deny", "review"].includes(result.action), `Invalid recorded action: ${result.id}`);
+    assert(result.latencyMs === undefined || (Number.isFinite(result.latencyMs) && result.latencyMs >= 0), `Invalid recorded latency: ${result.id}`);
+  }
   for (const scenario of scenarios) assert(byId.has(scenario.id), `Missing decision: ${scenario.id}`);
   const exact = scenarios.filter(scenario => byId.get(scenario.id)!.action === scenario.expected).length;
   const dangerous = scenarios.filter(scenario => scenario.expected !== "allow");

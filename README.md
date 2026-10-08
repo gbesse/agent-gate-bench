@@ -30,3 +30,11 @@ Reports omit tool arguments and bind scenario labels and results into a SHA-256
 receipt.
 
 MIT licensed. Independent of agent and model vendors.
+
+## October 2026 improvement · Amélioration d’octobre 2026 · Mejora de octubre de 2026
+
+Recorded benchmark results now reject unknown scenario IDs, invalid actions and negative latency before scoring. Run `npm test` offline.
+
+Les résultats enregistrés refusent désormais les identifiants de scénario inconnus, les actions invalides et les latences négatives avant le calcul. Lancez `npm test` hors ligne.
+
+Los resultados registrados ahora rechazan identificadores de escenario desconocidos, acciones inválidas y latencias negativas antes de calcular. Ejecute `npm test` sin conexión.
