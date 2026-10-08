@@ -30,3 +30,8 @@ test("detects unsafe allows with a confidence bound", () => {
   assert.equal(report.unsafeAllows, 1);
   assert.equal(report.unsafeAllowUpper95, 1);
 });
+test("rejects results outside the declared suite", () => {
+  const scenario = coreScenarios[0]!;
+  assert.throws(() => scoreRecorded("extra", [scenario], [{ id: scenario.id, action: scenario.expected }, { id: "invented", action: "allow" }]), /Unknown recorded decision/);
+  assert.throws(() => scoreRecorded("latency", [scenario], [{ id: scenario.id, action: scenario.expected, latencyMs: -1 }]), /Invalid recorded latency/);
+});

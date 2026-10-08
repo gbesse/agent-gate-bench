@@ -1,6 +1,6 @@
 {
   "name": "@gbesse/agent-gate-bench",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A vendor-neutral safety and latency benchmark for AI agent permission gates.",
   "type": "module",
   "license": "MIT",
