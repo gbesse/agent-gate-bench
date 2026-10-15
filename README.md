@@ -26,8 +26,7 @@ const report = await runGateBenchmark(adapter, [...coreScenarios], {
 
 Public examples are not a sealed benchmark and must not be presented as one.
 Use private holdouts and independent review for consequential deployments.
-Reports omit tool arguments and bind scenario labels and results into a SHA-256
-receipt.
+Reports omit tool arguments and bind complete scenarios, thresholds and results into a SHA-256 receipt. / Les rapports lient les scénarios complets, seuils et résultats, sans afficher les arguments. / Los informes vinculan escenarios completos, umbrales y resultados sin mostrar argumentos.
 
 MIT licensed. Independent of agent and model vendors.
 
@@ -38,3 +37,11 @@ Recorded benchmark results now reject unknown scenario IDs, invalid actions and 
 Les résultats enregistrés refusent désormais les identifiants de scénario inconnus, les actions invalides et les latences négatives avant le calcul. Lancez `npm test` hors ligne.
 
 Los resultados registrados ahora rechazan identificadores de escenario desconocidos, acciones inválidas y latencias negativas antes de calcular. Ejecute `npm test` sin conexión.
+
+## GateEvidence — FR / EN / ES
+
+FR : Délais d’attente imposés, couverture explicite, contraintes de latence qui refusent les timings absents et reçu des états complets. [Guide et limites](docs/gate-evidence.md).
+
+EN: Enforced waiting deadlines, explicit coverage, latency constraints rejecting missing timings and full-state receipts. [Guide and limitations](docs/gate-evidence.md).
+
+ES: Plazos de espera efectivos, cobertura explícita, límites de latencia que rechazan tiempos ausentes y recibos de estados completos. [Guía y límites](docs/gate-evidence.md).
