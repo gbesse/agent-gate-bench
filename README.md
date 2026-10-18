@@ -45,3 +45,10 @@ FR : Délais d’attente imposés, couverture explicite, contraintes de latence 
 EN: Enforced waiting deadlines, explicit coverage, latency constraints rejecting missing timings and full-state receipts. [Guide and limitations](docs/gate-evidence.md).
 
 ES: Plazos de espera efectivos, cobertura explícita, límites de latencia que rechazan tiempos ausentes y recibos de estados completos. [Guía y límites](docs/gate-evidence.md).
+
+
+FR : Les familles personnalisées comme `__proto__` restent présentes dans les rapports JSON. Les tableaux d’arguments doivent être denses et sans propriété supplémentaire : une forme perdue lors de la sérialisation est refusée avant tout appel d’adaptateur. Cela protège la fidélité des preuves, sans établir la sûreté d’un agent réel.
+
+EN: Custom families such as `__proto__` remain present in JSON reports. Argument arrays must be dense and have no additional properties: shapes lost in serialization are rejected before adapter calls. This protects evidence fidelity without establishing a real agent’s safety.
+
+ES: Las familias personalizadas como `__proto__` permanecen en los informes JSON. Los arrays de argumentos deben ser densos y sin propiedades adicionales: las formas que se pierden al serializar se rechazan antes de llamar al adaptador. Esto protege la fidelidad de las pruebas sin demostrar la seguridad de un agente real.

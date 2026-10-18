@@ -267,3 +267,20 @@ test('invalid adapter identity is rejected without starting work', async () => {
   );
   assert.equal(calls, 0);
 });
+
+
+test('prototype-like family names remain owned and serializable in benchmark evidence',()=>{
+ const suite=['__proto__','constructor','toString'].map((family,i)=>({...coreScenarios[0]!,id:String(i),family}));
+ const report=scoreRecorded('custom families',suite,suite.map(s=>({id:s.id,action:'allow' as const})));
+ const parsed=JSON.parse(JSON.stringify(report));
+ assert.deepEqual(Object.keys(parsed.byFamily).sort(),['__proto__','constructor','toString'].sort());
+ for(const s of suite){assert.ok(Object.hasOwn(report.byFamily,s.family));assert.equal(parsed.byFamily[s.family].cases,1);assert.equal(parsed.byFamily[s.family].exactAccuracy,1);}
+});
+test('sparse or extra-property argument arrays are rejected before adapter dispatch',async()=>{
+ const sparse=new Array(2);sparse[1]='retained';
+ const extra:any[]=['retained'];Object.assign(extra,{hiddenToJSON:'sentinel'});
+ for(const values of [sparse,extra]){
+  let calls=0;await assert.rejects(runGateBenchmark({name:'x',async decide(){calls++;return {action:'allow'};}},[{...coreScenarios[0]!,arguments:{values}}]),/json_array/);assert.equal(calls,0);
+ }
+ const dense=scoreRecorded('dense',[{...coreScenarios[0]!,arguments:{values:[null,'retained']}}],[{id:coreScenarios[0]!.id,action:'allow'}]);assert.equal(dense.passed,true);
+});
