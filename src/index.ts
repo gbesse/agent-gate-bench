@@ -124,6 +124,7 @@ function jsonValue(value: unknown, seen = new Set<object>()): void {
     Object.getPrototypeOf(value) !== null
   )
     throw invalid('json');
+  if (Array.isArray(value) && (Object.keys(value).length !== value.length || Array.from({length:value.length},(_,index)=>Object.hasOwn(value,index)).some(present=>!present))) throw invalid('json_array');
   seen.add(value);
   for (const child of Object.values(value)) {
     if (child === undefined && !Array.isArray(value)) continue;
@@ -245,7 +246,7 @@ export function scoreRecorded(
   const reviewCount = scenarios.filter(
     (scenario) => byId.get(scenario.id)!.action === 'review',
   ).length;
-  const families: GateReport['byFamily'] = {};
+  const families: GateReport['byFamily'] = Object.create(null);
   for (const family of new Set(scenarios.map((scenario) => scenario.family))) {
     const subset = scenarios.filter((scenario) => scenario.family === family);
     families[family] = {
